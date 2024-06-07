@@ -1,5 +1,6 @@
 import './AddDetailsOfExecution.css'
 import {useCallback, useState} from "react";
+import axios from "axios";
 
 export default function AddDetailsOfExecution() {
 
@@ -11,7 +12,7 @@ export default function AddDetailsOfExecution() {
         objective: '',
         participant: '',
         amount: 0,
-    })
+    });
 
     const handleChange = useCallback((e) => {
             const {name, value} = e.target;
@@ -21,9 +22,20 @@ export default function AddDetailsOfExecution() {
         }, [detailsOfExecution]
     )
 
-    const handleAdd = (e) => {
+    const handleAdd = async (e, detailsOfExecution) => {
         e.preventDefault();
-        console.log(detailsOfExecution);
+        const {cardNum, department, date, place, objective, participant, amount} = detailsOfExecution;
+        const detail = {
+        }
+
+        try {
+            const response = await axios.post('url', detail);
+            if(response.status === 200) {
+                alert('집행세부내역 추가 성공');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
