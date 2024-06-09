@@ -73,7 +73,7 @@ export default function AddDetailsOfExecution() {
                     <div>금액</div>
                     <input name='amount' type='text' value={detailsOfExecution.amount} onChange={handleChange}/>
                 </div>
-                <input className='submit-btn' type='submit'/>
+                <input className='submit-btn' type='submit' value='작성'/>
             </form>
         </div>
     )

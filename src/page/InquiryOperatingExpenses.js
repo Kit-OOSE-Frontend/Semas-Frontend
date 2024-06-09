@@ -1,18 +1,18 @@
-import './InquaryOperatingExpenses.css'
+import './InquiryOperatingExpenses.css'
 import {useState} from "react";
 
-export default function InquaryOperatingExpenses() {
+export default function InquiryOperatingExpenses() {
 
-    const [inquaryResult, setInquaryResult] = useState();
+    const [inquiryResult, setInquiryResult] = useState();
     return (
-        <div className='inquary-expense-wrap'>
-            <div className='inquary-expense-title'>월별 부서운영비 카드사용내역 조회</div>
-            <div className='inquary-input-wrap'>
-                <div className='inquary-input'>
+        <div className='inquiry-expense-wrap'>
+            <div className='inquiry-expense-title'>월별 부서운영비 카드사용내역 조회</div>
+            <div className='inquiry-input-wrap'>
+                <div className='inquiry-input'>
                     <label>부서 이름</label>
                     <input type='text'/>
                 </div>
-                <div className='inquary-input'>
+                <div className='inquiry-input'>
                     <label>조회하고 싶은 달</label>
                     <select name='month'>
                         <option value='1'>1</option>
@@ -31,8 +31,8 @@ export default function InquaryOperatingExpenses() {
                 </div>
             </div>
             <button>조회</button>
-            {inquaryResult?
-                <div className='inquary-result'>
+            {inquiryResult?
+                <div className='inquiry-result'>
                     <table>
                         <thead>
                         <tr>

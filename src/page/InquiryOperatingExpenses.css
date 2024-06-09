@@ -1,4 +1,4 @@
-.inquary-expense-wrap {
+.inquiry-expense-wrap {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,39 +7,39 @@
     font-family: BMJUA, serif;
     text-align: center;
 }
-.inquary-expense-title {
+.inquiry-expense-title {
     text-align: center;
     font-size: 2.5rem;
     margin-top: 3rem;
 }
-.inquary-input {
+.inquiry-input {
     display: flex;
     align-items: center;
 }
-.inquary-input-wrap {
+.inquiry-input-wrap {
     display: flex;
     margin-top: 6rem;
     justify-content: space-evenly;
     align-items: center;
 }
-.inquary-input label {
+.inquiry-input label {
     margin-right: 2rem;
     font-size: 2rem;
 }
-.inquary-input input {
+.inquiry-input input {
     width: 15rem;
     height: 2rem;
     font-size: 1.6rem;
     font-family: BMJUA, serif;
     text-align: center;
 }
-.inquary-input select {
+.inquiry-input select {
     height: 2rem;
     font-size: 1.6rem;
     font-family: BMJUA, serif;
     text-align: center;
 }
-.inquary-expense-wrap button {
+.inquiry-expense-wrap button {
     cursor: pointer;
     background-color: #027bff;
     color: #fff;
