@@ -58,7 +58,7 @@ export default function InquiryOperatingExpenses() {
                         </tbody>
                     </table>
                 </div>
-                :<div className='result-err'>조회 결과가 없습니다.</div>}
+                :<div className='no-result'>조회 결과가 없습니다.</div>}
         </div>
     )
 }

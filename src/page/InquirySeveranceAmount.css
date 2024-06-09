@@ -1,0 +1,50 @@
+.inquiry-severance-wrap {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: BMJUA, serif;
+}
+.inquiry-severance-title {
+    font-size: 2.5rem;
+    margin: 3rem 0;
+}
+.inquiry-severance-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 2rem;
+}
+.employee-id-input-title {
+    text-align: left;
+}
+.inquiry-severance-input {
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: left;
+}
+.inquiry-severance-input .employee-id-input {
+    width: 20rem;
+    height: 3rem;
+    font-size: 1.4rem;
+    font-family: BMJUA, serif;
+    padding-left: 1rem;
+    margin-right: 2rem;
+}
+.inquiry-severance-input .inquiry-severance-inquiry {
+    cursor: pointer;
+    background-color: #027bff;
+    color: #fff;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 200;
+    border-radius: 5px;
+    width: 9rem;
+    font-family: BMJUA, serif;
+}
+.inquiry-severance-result {
+    margin-top: 3rem;
+}
