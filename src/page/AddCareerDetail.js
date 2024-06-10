@@ -12,7 +12,7 @@ export default function AddCareerDetail() {
         Period: 0.0,
         PositionExpereience: '',
         TrainingCompletion: '',
-        LicenseList: [],
+        LicenseList: '',
         Prize: '',
         Punish: '',
         DesiredTask: '',
@@ -44,11 +44,11 @@ export default function AddCareerDetail() {
                     <input name="EmployeeId" type="number" value={addCareerDetail.EmployeeId} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
-                    <div>직책</div>
+                    <div>소속</div>
                     <input name="Position" type="text" value={addCareerDetail.Position} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
-                    <div>직책 상세</div>
+                    <div>발령 사항</div>
                     <input
                         name="PositionDetail"
                         type="text"
@@ -70,15 +70,15 @@ export default function AddCareerDetail() {
                     <input name="Task" type="text" value={addCareerDetail.Task} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
-                    <div>평점</div>
+                    <div>평가 평점</div>
                     <input name="Rate" type="text" value={addCareerDetail.Rate} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
-                    <div>기간</div>
+                    <div>근속 기간</div>
                     <input name="Period" type="text" value={addCareerDetail.Period} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
-                    <div>직책 경험</div>
+                    <div>보직 경험</div>
                     <input
                         name="PositionExpereience"
                         type="checkbox"
@@ -87,7 +87,7 @@ export default function AddCareerDetail() {
                     />
                 </div>
                 <div className="detail-div">
-                    <div>교육 경험</div>
+                    <div>교육 이수 여부</div>
                     <input
                         name="TrainingCompletion"
                         type="checkbox"
@@ -97,23 +97,18 @@ export default function AddCareerDetail() {
                 </div>
                 <div className="detail-div">
                     <div>자격증 목록</div>
-                    <input
-                        name="LicenseList"
-                        type="text"
-                        value={addCareerDetail.LicenseList.join(',')}
-                        onChange={handleChange}
-                    />
+                    <input name="LicenseList" type="text" value={addCareerDetail.LicenseList} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
                     <div>수상경력</div>
                     <input name="Prize" type="text" value={addCareerDetail.Prize} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
-                    <div>Punish</div>
+                    <div>처벌</div>
                     <input name="Punish" type="text" value={addCareerDetail.Punish} onChange={handleChange} />
                 </div>
                 <div className="detail-div">
-                    <div>요구 작업</div>
+                    <div>희망 직무</div>
                     <input name="DesiredTask" type="text" value={addCareerDetail.DesiredTask} onChange={handleChange} />
                 </div>
                 <input className="submit-btn" type="submit" />
@@ -121,3 +116,15 @@ export default function AddCareerDetail() {
         </div>
     );
 }
+
+/*
+<div className="detail-div">
+                    <div>자격증 목록</div>
+                    <input
+                        name="LicenseList"
+                        type="text"
+                        value={addCareerDetail.LicenseList.join(',')}
+                        onChange={handleChange}
+                    />
+                </div>
+                */
