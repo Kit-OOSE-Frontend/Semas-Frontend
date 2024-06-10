@@ -1,33 +1,36 @@
 import './InquiryOperatingExpenses.css'
-import {useState} from "react";
+import {useCallback, useState} from "react";
 
 export default function InquiryOperatingExpenses() {
 
+    const [operatingExpensesInputs, setOperatingExpensesInputs] = useState({
+        department: '',
+        date: ''
+    });
+
     const [inquiryResult, setInquiryResult] = useState();
+
+    const {department, date} = operatingExpensesInputs;
+
+    const handleChange = useCallback((e) => {
+            const { name, value } = e.target;
+            setOperatingExpensesInputs(
+                {...operatingExpensesInputs, [name]: value}
+            )
+        }, [operatingExpensesInputs]
+    )
+
     return (
         <div className='inquiry-expense-wrap'>
             <div className='inquiry-expense-title'>월별 부서운영비 카드사용내역 조회</div>
             <div className='inquiry-input-wrap'>
                 <div className='inquiry-input'>
                     <label>부서 이름</label>
-                    <input type='text'/>
+                    <input name='department' type='text' value={department} onChange={handleChange}/>
                 </div>
                 <div className='inquiry-input'>
                     <label>조회하고 싶은 달</label>
-                    <select name='month'>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='6'>6</option>
-                        <option value='7'>7</option>
-                        <option value='8'>8</option>
-                        <option value='9'>9</option>
-                        <option value='10'>10</option>
-                        <option value='11'>11</option>
-                        <option value='12'>12</option>
-                    </select>
+                    <input name='date' type='month' value={date} onChange={handleChange}/>
                 </div>
             </div>
             <button>조회</button>
