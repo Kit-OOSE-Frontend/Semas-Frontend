@@ -92,14 +92,16 @@ import './AddBudgetingDetail.css';
 export default function AddBudgetingDetail() {
     const [budgeting, setBudgeting] = useState({
         budgetingID: '',
-        budgetingName: '',
-        budgetByTaxCategory: '',
-        detailOfExecution: [],
-        writtenAgreement: '',
+        budget_Name: '',
+        budget_Category: '',
+
+        written_Agreement: '',
         businessPerformancePlan: '',
         isRequest: true,
         isApproval: false,
     });
+
+    //detail_Of_Execution: [],
 
     const [detailOfExecution, setDetailOfExecution] = useState([
         {
