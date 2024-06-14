@@ -21,7 +21,7 @@ export default function RetirementPensionCalculation() {
         try {
             const response = await axios.post(`${BASE_URL}/calculate-pansion`, id);
             if(response.status === 200) {
-                alert(`직원 ID ${employeeId}의 퇴직연금이 계산되어 저장되었습니다.`);
+                alert(`직원 ID ${employeeId}의 퇴직연금이 계산되어 DB에 저장되었습니다.`);
             }
         } catch (error) {
             console.error(error);

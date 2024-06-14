@@ -1,5 +1,7 @@
 import './InquiryOperatingExpenses.css'
 import {useCallback, useState} from "react";
+import axios from "axios";
+import {BASE_URL} from "../config/Config";
 
 export default function InquiryOperatingExpenses() {
 
@@ -20,6 +22,24 @@ export default function InquiryOperatingExpenses() {
         }, [operatingExpensesInputs]
     )
 
+    const handleInquiry = async ()=> {
+        const {department, date} = inquiryResult;
+
+        const params = {
+            department: department,
+            date: date.replace('-','')
+        }
+
+        try {
+            const response = await axios.get(`${BASE_URL}/showinquiry-operatingexpenses`, { params });
+            if(response.status === 200) {
+                setInquiryResult(response.data);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div className='inquiry-expense-wrap'>
             <div className='inquiry-expense-title'>월별 부서운영비 카드사용내역 조회</div>
@@ -33,35 +53,38 @@ export default function InquiryOperatingExpenses() {
                     <input name='date' type='month' value={date} onChange={handleChange}/>
                 </div>
             </div>
-            <button>조회</button>
-            {inquiryResult?
-                <div className='inquiry-result'>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th scope='col'>날짜</th>
-                            <th scope='col'>부서</th>
-                            <th scope='col'>카드번호</th>
-                            <th scope='col'>목적</th>
-                            <th scope='col'>장소</th>
-                            <th scope='col'>참여자</th>
-                            <th scope='col'>금액</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>2024-06-07</td>
-                            <td>회계</td>
-                            <td>1234-5678-90</td>
-                            <td>회의 비품 구매</td>
-                            <td>세븐일레븐</td>
-                            <td>사원, 디자인팀</td>
-                            <td>200만원</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                :<div className='no-result'>조회 결과가 없습니다.</div>}
+            <button onClick={()=> handleInquiry}>조회</button>
+            {inquiryResult?.length > 0 ? (
+                    <div className='inquiry-result'>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th scope='col'>날짜</th>
+                                <th scope='col'>부서</th>
+                                <th scope='col'>카드번호</th>
+                                <th scope='col'>목적</th>
+                                <th scope='col'>장소</th>
+                                <th scope='col'>참여자</th>
+                                <th scope='col'>금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {inquiryResult.map(result => (
+                            <tr>
+                                <td>{result.date}</td>
+                                <td>{result.department}</td>
+                                <td>{result.cardNum}</td>
+                                <td>{result.purpose}</td>
+                                <td>{result.place}</td>
+                                <td>{result.participant}</td>
+                                <td>{result.amount}</td>
+                            </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )
+                : <div className='no-result'>조회 결과가 없습니다.</div>}
         </div>
     )
 }

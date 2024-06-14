@@ -1,6 +1,7 @@
 import './AddDetailsOfExecution.css'
 import {useCallback, useState} from "react";
 import axios from "axios";
+import {BASE_URL} from "../config/Config";
 
 export default function AddDetailsOfExecution() {
 
@@ -26,10 +27,17 @@ export default function AddDetailsOfExecution() {
         e.preventDefault();
         const {cardNum, department, date, place, objective, participant, amount} = detailsOfExecution;
         const detail = {
+            cardNum: cardNum,
+            department: department,
+            date: date,
+            place: place,
+            purpose: objective,
+            participant: participant,
+            amount: amount
         }
 
         try {
-            const response = await axios.post('url', detail);
+            const response = await axios.post(`${BASE_URL}/write-detailsofexecution`, detail);
             if(response.status === 200) {
                 alert('집행세부내역 추가 성공');
             }

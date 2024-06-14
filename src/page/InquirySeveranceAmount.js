@@ -18,7 +18,7 @@ export default function InquirySeveranceAmount() {
         try {
             const response = await axios.get(`${BASE_URL}/search-severance/${employeeId}`);
             if(response.status === 200) {
-                setInquiryResult(response.data);
+                setInquiryResult(response.data.severanceAmount);
             }
         } catch (error) {
             console.error(error);
