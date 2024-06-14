@@ -1,6 +1,7 @@
 import './InquirySeveranceAmount.css'
 import {useCallback, useState} from "react";
 import axios from "axios";
+import {BASE_URL} from "../config/Config";
 
 export default function InquirySeveranceAmount() {
 
@@ -15,9 +16,9 @@ export default function InquirySeveranceAmount() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('url', employeeId);
+            const response = await axios.get(`${BASE_URL}/search-severance/${employeeId}`);
             if(response.status === 200) {
-                alert('통신 성공');
+                setInquiryResult(response.data);
             }
         } catch (error) {
             console.error(error);
@@ -45,8 +46,8 @@ export default function InquirySeveranceAmount() {
                         </thead>
                         <tbody>
                         <tr>
-                            <td>12345</td>
-                            <td>300,000,000</td>
+                            <td>{employeeId}</td>
+                            <td>{inquiryResult}</td>
                         </tr>
                         </tbody>
                     </table>

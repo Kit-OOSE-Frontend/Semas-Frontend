@@ -1,6 +1,7 @@
 import './RetirementPensionCalculation.css'
 import {useCallback, useState} from "react";
 import axios from "axios";
+import {BASE_URL} from "../config/Config";
 
 export default function RetirementPensionCalculation() {
 
@@ -13,8 +14,12 @@ export default function RetirementPensionCalculation() {
     const handleCalculation = async (e, employeeId) => {
         e.preventDefault();
 
+        const id = {
+            id: employeeId
+        }
+
         try {
-            const response = await axios.post('url', employeeId);
+            const response = await axios.post(`${BASE_URL}/calculate-pansion`, id);
             if(response.status === 200) {
                 alert(`직원 ID ${employeeId}의 퇴직연금이 계산되어 저장되었습니다.`);
             }
