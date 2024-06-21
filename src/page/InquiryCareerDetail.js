@@ -24,17 +24,17 @@ export default function InquiryCareerDetail() {
     };
 
     return (
-        <div className="inquiry-expense-wrap">
-            <div className="inquiry-expense-title">사원 상세정보 조회</div>
-            <div className="inquiry-input-wrap">
-                <div className="inquiry-input">
+        <div className="inquiry-career-wrap">
+            <div className="inquiry-career-title">사원 상세정보 조회</div>
+            <div className="inquiry-id-input-wrap">
+                <div className="inquiry-id-input">
                     <label>사원 id</label>
                     <input name="emp_id" type="text" value={empid} onChange={handleChange} />
                 </div>
             </div>
             <button onClick={() => handleInquiry}>조회</button>
             {inquiryCareerDetail?.length > 0 ? (
-                <div className="inquiry-result">
+                <div className="inquiry-career-result">
                     <table>
                         <thead>
                             <tr>
@@ -75,20 +75,8 @@ export default function InquiryCareerDetail() {
                     </table>
                 </div>
             ) : (
-                <div className="no-result">조회 결과가 없습니다.</div>
+                <div className="career-no-result">조회 결과가 없습니다.</div>
             )}
         </div>
     );
 }
-
-/*
-<div className="detail-div">
-                    <div>자격증 목록</div>
-                    <input
-                        name="LicenseList"
-                        type="text"
-                        value={addCareerDetail.LicenseList.join(',')}
-                        onChange={handleChange}
-                    />
-                </div>
-                */
