@@ -58,7 +58,7 @@ export default function InquiryBudgetingDetail() {
                             {inquiryCareerDetail.map((result) => (
                                 <tr>
                                     <td>{result.budget_name}</td>
-                                    <td>{result.budget_category}</td>
+                                    <td>{result.budget_department}</td>
                                     <td>{result.agreement_name}</td>
                                     <td>{result.agreement_detail}</td>
                                     <td>{result.plan_name}</td>

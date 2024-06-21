@@ -6,7 +6,7 @@ import { BASE_URL } from '../config/Config';
 export default function AddBudgetingDetail() {
     const [budgeting, setBudgeting] = useState({
         budget_name: '',
-        budget_category: '',
+        budget_department: '',
         agreement_name: '',
         agreement_detail: '',
         plan_name: '',
@@ -66,7 +66,7 @@ export default function AddBudgetingDetail() {
         e.preventDefault();
         const {
             budget_name,
-            budget_category,
+            budget_department,
             agreement_name,
             agreement_detail,
             plan_name,
@@ -75,7 +75,7 @@ export default function AddBudgetingDetail() {
         } = budgeting;
         const budgetform = {
             budget_name: budget_name,
-            budget_category: budget_category,
+            budget_department: budget_department,
             agreement_name: agreement_name,
             agreement_detail: agreement_detail,
             plan_name: plan_name,
@@ -120,9 +120,9 @@ export default function AddBudgetingDetail() {
                 <div className="detail-div">
                     <div>신청 부서</div>
                     <input
-                        name="budget_category"
+                        name="budget_department"
                         type="text"
-                        value={budgeting.budget_category}
+                        value={budgeting.budget_department}
                         onChange={handleChange}
                     />
                 </div>
