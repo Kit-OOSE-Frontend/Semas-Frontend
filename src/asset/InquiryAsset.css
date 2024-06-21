@@ -1,0 +1,86 @@
+.inquiry-asset-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.name-of-inquiry {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.inquiry-asset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.inquiry-asset form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inquiry-input-name {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.inquiry-asset-id-input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.asset-id-inquiry-button {
+    width: 30%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.asset-id-inquiry-button:hover {
+    background-color: #45a049;
+}
+
+.inquiry-asset-result {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.inquiry-asset-result table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inquiry-asset-result th, .inquiry-asset-result td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.inquiry-asset-result th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.inquiry-asset-result tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.inquiry-asset-result tr:hover {
+    background-color: #f1f1f1;
+}

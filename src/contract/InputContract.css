@@ -1,0 +1,89 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.Input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Input form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.Input label {
+    margin: 10px 0 5px 0;
+}
+
+.Input input[type="text"],
+.Input textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.detailInput {
+    height: 100px; /* 세로로 더 길게 만듭니다 */
+    resize: vertical; /* 사용자가 세로 크기를 조절할 수 있습니다 */
+}
+
+.Input select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button-container button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-container button:hover {
+    background-color: #45a049;
+}
+
+.button-container button[type='button'] {
+    background-color: #f44336;
+}
+
+.button-container button[type='button']:hover {
+    background-color: #e53935;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}

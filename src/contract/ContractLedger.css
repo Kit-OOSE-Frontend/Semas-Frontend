@@ -1,0 +1,77 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.Input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.Input select, 
+.Input input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.Input button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.Input button:hover {
+    background-color: #45a049;
+}
+
+.Results {
+    margin-top: 20px;
+}
+
+.Results h2 {
+    text-align: center;
+    color: #333;
+}
+
+.Results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.Results table, 
+.Results th, 
+.Results td {
+    border: 1px solid #ddd;
+}
+
+.Results th, 
+.Results td {
+    padding: 12px;
+    text-align: left;
+}
+
+.Results th {
+    background-color: #f2f2f2;
+    color: #333;
+}
