@@ -22,7 +22,6 @@ function App() {
           <Route path="/" element={<InquirySeveranceAmount/>} />
           <Route path='/contract-ledger' element={<ContractLedger/>}/>
           <Route path='/input-contract' element={<InputContract/>}/>
-          <Route path='/inquiry-asset' element={<InquiryAsset/>}/>
           <Route path='/update-asset' element={<UpdateAssetStatement/>}/>
           <Route path="/budget" element={<AddBudgetingDetail />} />
           <Route path="/career" element={<AddCareerDetail />} />
