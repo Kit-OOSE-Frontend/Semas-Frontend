@@ -42,7 +42,8 @@ export default function AddBudgetingDetail() {
         [detailOfExecution]
     );
 
-    const addRow = () => {
+    const addRow = e => {
+        e.preventDefault();
         setBudgeting({ ...budgeting, budget_detail_count: budgeting.budget_detail_count + 1 });
         setDetailOfExecution([
             ...detailOfExecution,
@@ -83,7 +84,7 @@ export default function AddBudgetingDetail() {
             budget_detail_count: budget_detail_count,
         };
 
-        const [{ budget_detail_name, budget_detail_quantity, budget_detail_unit_price, budget_detail_unit }] =
+        /* const [{ budget_detail_name, budget_detail_quantity, budget_detail_unit_price, budget_detail_unit }] =
             detailOfExecution;
         const detailform = [
             {
@@ -92,19 +93,26 @@ export default function AddBudgetingDetail() {
                 budget_detail_unit_price: budget_detail_unit_price,
                 budget_detail_unit: budget_detail_unit,
             },
-        ];
+        ]; */
+
+        const detailform = detailOfExecution.map(detail => ({
+            budget_detail_name: detail.budget_detail_name,
+            budget_detail_quantity: detail.budget_detail_quantity,
+            budget_detail_unit_price: detail.budget_detail_unit_price,
+            budget_detail_unit: detail.budget_detail_unit,
+        }));
 
         try {
             const response1 = await axios.post(`${BASE_URL}/apply-budget-form`, budgetform);
-            if (response1.status === 200) {
-                alert(`신청되었습니다. 당신의 예산 편성 신청 번호는 ${response1.data.id}입니다.`);
-            }
-            const response2 = await axios.post(
-                `${BASE_URL}/submit-budget-detail-list/${response1.data.id}`,
-                detailform
-            );
-            if (response2.status === 200) {
-                alert("예산편성세목 신청 완료");
+            if (response1.status === 200 && response1.data) {
+                alert(`신청되었습니다. 당신의 예산 편성 신청 번호는 ${response1.data}입니다.`);
+                const response2 = await axios.post(
+                    `${BASE_URL}/submit-budget-detail-list/${response1.data}`,
+                    detailform
+                );
+                if (response2.status === 200) {
+                    alert("예산편성세목 신청 완료");
+                }
             }
         } catch (error) {
             console.error(error);
@@ -200,14 +208,18 @@ export default function AddBudgetingDetail() {
                                     <td>{row.budget_detail_quantity * row.budget_detail_unit_price}</td>
                                     {detailOfExecution.length > 1 && (
                                         <td>
-                                            <button onClick={() => deleteRow(rowIndex)}>행 삭제</button>
+                                            <button type="button" onClick={() => deleteRow(rowIndex)}>
+                                                행 삭제
+                                            </button>
                                         </td>
                                     )}
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <button onClick={addRow}>행 추가</button>
+                    <button type="button" onClick={addRow}>
+                        행 추가
+                    </button>
                 </div>
 
                 <input className="submit-btn" type="submit" />
