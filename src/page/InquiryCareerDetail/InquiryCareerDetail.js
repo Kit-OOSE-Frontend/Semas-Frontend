@@ -1,13 +1,14 @@
-import './InquiryCareerDetail.css';
-import { useCallback, useState } from 'react';
-import axios from 'axios';
-import {BASE_URL} from '../../config/Config';
+import "./InquiryCareerDetail.css";
+import { useCallback, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../../config/Config";
 
 export default function InquiryCareerDetail() {
-    const [empid, setEmpId] = useState('');
+    const [empid, setEmpId] = useState("");
     const [inquiryCareerDetail, setInquiryCareerDetail] = useState();
+    const [status, setStatus] = useState("");
 
-    const handleChange = useCallback((e) => {
+    const handleChange = useCallback(e => {
         setEmpId(e.target.value);
     });
 
@@ -17,9 +18,13 @@ export default function InquiryCareerDetail() {
             console.log(response);
             if (response.status === 200) {
                 setInquiryCareerDetail(response.data);
+                setStatus("성공");
+            } else {
+                setStatus("실패");
             }
         } catch (error) {
             console.error(error);
+            setStatus("실패");
         }
     };
 
@@ -33,7 +38,7 @@ export default function InquiryCareerDetail() {
                 </div>
             </div>
             <button onClick={handleInquiry}>조회</button>
-            {inquiryCareerDetail ? (
+            {status === "성공" && inquiryCareerDetail ? (
                 <div className="inquiry-career-result">
                     <table>
                         <thead>
@@ -54,26 +59,26 @@ export default function InquiryCareerDetail() {
                             </tr>
                         </thead>
                         <tbody>
-                                <tr>
-                                    <td>{inquiryCareerDetail.emp_id}</td>
-                                    <td>{inquiryCareerDetail.emp_position}</td>
-                                    <td>{inquiryCareerDetail.emp_pos_detail}</td>
-                                    <td>{inquiryCareerDetail.emp_level}</td>
-                                    <td>{inquiryCareerDetail.emp_task}</td>
-                                    <td>{inquiryCareerDetail.emp_rate}</td>
-                                    <td>{inquiryCareerDetail.emp_pos_period}</td>
-                                    <td>{inquiryCareerDetail.emp_pos_exp}</td>
-                                    <td>{inquiryCareerDetail.emp_training}</td>
-                                    <td>{inquiryCareerDetail.emp_license}</td>
-                                    <td>{inquiryCareerDetail.emp_prize}</td>
-                                    <td>{inquiryCareerDetail.emp_punish}</td>
-                                    <td>{inquiryCareerDetail.emp_pos_desire}</td>
-                                </tr>
+                            <tr>
+                                <td>{inquiryCareerDetail.emp_id}</td>
+                                <td>{inquiryCareerDetail.emp_position}</td>
+                                <td>{inquiryCareerDetail.emp_pos_detail}</td>
+                                <td>{inquiryCareerDetail.emp_level}</td>
+                                <td>{inquiryCareerDetail.emp_task}</td>
+                                <td>{inquiryCareerDetail.emp_rate}</td>
+                                <td>{inquiryCareerDetail.emp_pos_period}</td>
+                                <td>{inquiryCareerDetail.emp_pos_exp ? "유경험" : "무경험"}</td>
+                                <td>{inquiryCareerDetail.emp_training ? "이수함" : "이수하지않음"}</td>
+                                <td>{inquiryCareerDetail.emp_license}</td>
+                                <td>{inquiryCareerDetail.emp_prize}</td>
+                                <td>{inquiryCareerDetail.emp_punish}</td>
+                                <td>{inquiryCareerDetail.emp_pos_desire}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             ) : (
-                <div className="career-no-result">조회 결과가 없습니다.</div>
+                <div className="career-no-result">{status === "실패" ? "조회 결과가 없습니다." : ""}</div>
             )}
         </div>
     );

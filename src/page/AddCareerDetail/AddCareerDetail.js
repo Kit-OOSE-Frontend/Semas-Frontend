@@ -11,7 +11,7 @@ export default function AddCareerDetail() {
         emp_level: "",
         emp_task: "",
         emp_rate: "",
-        emp_pos_period: 0,
+        emp_pos_period: 0.0,
         emp_pos_exp: false,
         emp_training: false,
         emp_license: "",
@@ -20,22 +20,13 @@ export default function AddCareerDetail() {
         emp_pos_desire: "",
     });
 
-    const handleChange = useCallback(
-        e => {
-            const { name, value } = e.target;
-            if (name === "emp_license") {
-                setAddCareerDetail({ ...addCareerDetail, [name]: value.split(",") });
-            } else {
-                setAddCareerDetail({ ...addCareerDetail, [name]: value });
-            }
-        },
-        [addCareerDetail]
-    );
-
-    /* const handleAdd = (e) => {
-        e.preventDefault();
-        console.log(addCareerDetail.emp_id);
-    }; */
+    const handleChange = useCallback(e => {
+        const { name, type, value, checked } = e.target;
+        setAddCareerDetail(prevState => ({
+            ...prevState,
+            [name]: type === "checkbox" ? checked : value,
+        }));
+    }, []);
 
     const handleAdd = async e => {
         e.preventDefault();
@@ -55,22 +46,22 @@ export default function AddCareerDetail() {
             emp_pos_desire,
         } = addCareerDetail;
         const career = {
-            emp_position: emp_position,
-            emp_pos_detail: emp_pos_detail,
-            emp_level: emp_level,
-            emp_task: emp_task,
-            emp_rate: emp_rate,
-            emp_pos_period: emp_pos_period,
-            emp_pos_exp: emp_pos_exp,
-            emp_training: emp_training,
-            emp_license: emp_license,
-            emp_prize: emp_prize,
-            emp_punish: emp_punish,
-            emp_pos_desire: emp_pos_desire,
+            emp_position,
+            emp_pos_detail,
+            emp_level,
+            emp_task,
+            emp_rate,
+            emp_pos_period,
+            emp_pos_exp,
+            emp_training,
+            emp_license,
+            emp_prize,
+            emp_punish,
+            emp_pos_desire,
         };
 
         try {
-            const response = await axios.post(`${BASE_URL}/insert-emp-career/${addCareerDetail.emp_id}`, career);
+            const response = await axios.put(`${BASE_URL}/insert-emp-career/${addCareerDetail.emp_id}`, career);
             if (response.status === 200) {
                 alert(`${addCareerDetail.emp_id}번 사원 상세정보 추가 성공`);
             }
@@ -82,7 +73,7 @@ export default function AddCareerDetail() {
     return (
         <div className="add-details-wrap">
             <div className="add-details-title">사원 상세경력 작성</div>
-            <form onSubmit={ handleAdd }>
+            <form onSubmit={handleAdd}>
                 <div className="detail-div">
                     <div>사원번호</div>
                     <input name="emp_id" type="number" value={addCareerDetail.emp_id} onChange={handleChange} />
@@ -121,7 +112,7 @@ export default function AddCareerDetail() {
                     <div>근속 기간</div>
                     <input
                         name="emp_pos_period"
-                        type="text"
+                        type="number"
                         value={addCareerDetail.emp_pos_period}
                         onChange={handleChange}
                     />
@@ -131,7 +122,7 @@ export default function AddCareerDetail() {
                     <input
                         name="emp_pos_exp"
                         type="checkbox"
-                        value={addCareerDetail.emp_pos_exp}
+                        checked={addCareerDetail.emp_pos_exp}
                         onChange={handleChange}
                     />
                 </div>
@@ -140,7 +131,7 @@ export default function AddCareerDetail() {
                     <input
                         name="emp_training"
                         type="checkbox"
-                        value={addCareerDetail.emp_training}
+                        checked={addCareerDetail.emp_training}
                         onChange={handleChange}
                     />
                 </div>
@@ -170,15 +161,3 @@ export default function AddCareerDetail() {
         </div>
     );
 }
-
-/*
-<div className="detail-div">
-                    <div>자격증 목록</div>
-                    <input
-                        name="LicenseList"
-                        type="text"
-                        value={addCareerDetail.LicenseList.join(',')}
-                        onChange={handleChange}
-                    />
-                </div>
-                */
