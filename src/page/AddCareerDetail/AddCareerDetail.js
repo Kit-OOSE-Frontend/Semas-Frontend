@@ -82,7 +82,7 @@ export default function AddCareerDetail() {
     return (
         <div className="add-details-wrap">
             <div className="add-details-title">사원 상세경력 작성</div>
-            <form onSubmit={e => handleAdd(e)}>
+            <form onSubmit={ handleAdd }>
                 <div className="detail-div">
                     <div>사원번호</div>
                     <input name="emp_id" type="number" value={addCareerDetail.emp_id} onChange={handleChange} />
