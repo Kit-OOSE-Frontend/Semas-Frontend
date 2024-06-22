@@ -1,7 +1,8 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
-import MyDatePicker from './DatePicker'
-import './InputContract.css'
+import MyDatePicker from './DatePicker';
+import './InputContract.css';
+import { BASE_URL } from "../config/Config";
 
 export default function InputContract() {
     const [contractName, setContractName] = useState("");
@@ -9,8 +10,8 @@ export default function InputContract() {
     const [contractPartner, setContractPartner] = useState("");
     const [partnerAddress, setPartnerAddress] = useState("");
     const [contractDeposit, setContractDeposit] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const [department, setDepartment] = useState("");
     const [city, setCity] = useState("");
     const [message, setMessage] = useState("");
@@ -25,18 +26,18 @@ export default function InputContract() {
         e.preventDefault();
 
         const contractData = {
-            ContractName: contractName,
-            ContractDetail: contractDetail,
-            ContractDeposit: parseFloat(contractDeposit),
-            ContractPartner: contractPartner,
-            StartDay: startDate,
-            EndDay: endDate,
-            Department: department,
-            PartnerAddress: `${city} ${partnerAddress}`
+            contract_name: contractName,
+            contract_detail: contractDetail,
+            contract_deposit: parseFloat(contractDeposit),
+            contract_partner: contractPartner,
+            start_day: startDate ? startDate.toISOString() : null, // 날짜를 ISO 8601 형식으로 변환
+            end_day: endDate ? endDate.toISOString() : null, // 날짜를 ISO 8601 형식으로 변환
+            department: department,
+            partner_address: `${city} ${partnerAddress}`
         };
 
         try {
-            const response = await axios.post('/insert-contract', contractData);
+            const response = await axios.post(`${BASE_URL}/insert-contract`, contractData);
             if (response.data === true) {
                 setMessage("계약서 등록 성공");
             } else {
@@ -60,8 +61,8 @@ export default function InputContract() {
         setContractPartner("");
         setPartnerAddress("");
         setContractDeposit("");
-        setStartDate("");
-        setEndDate("");
+        setStartDate(null);
+        setEndDate(null);
         setDepartment("");
         setCity("");
         setMessage("");
@@ -148,5 +149,5 @@ export default function InputContract() {
                 {message && <p>{message}</p>}
             </div>
         </div>
-    )
+    );
 }

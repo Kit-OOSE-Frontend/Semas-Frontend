@@ -1,6 +1,7 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "axios";
 import './ContractLedger.css';
+import { BASE_URL } from "../config/Config";
 
 export default function ContractLedger() {
     const [selectedType, setSelectedType] = useState("");
@@ -21,11 +22,13 @@ export default function ContractLedger() {
             alert("조회 유형을 선택하고 값을 입력하세요.");
             return;
         }
-
-        let queryParam = selectedType === '계약자' ? 'partner' : 'department';
         try {
-            const response = await axios.get(`/inquiry-contact-ledger?${queryParam}=${inputValue}`);
-            setResults(response.data);
+            const response = await axios.get(`${BASE_URL}/inquiry-contract-ledger`, {
+                params: {
+                    department: inputValue // 이 부분에서 쿼리 파라미터 이름을 department로 변경
+                }
+            });
+            setResults(response.data); // API 응답 데이터를 results 상태에 저장
         } catch (error) {
             console.error("데이터를 가져오는 중 오류 발생:", error);
             alert("데이터를 가져오는 중 오류가 발생했습니다.");
@@ -38,7 +41,6 @@ export default function ContractLedger() {
             <div className='Input'>
                 <select defaultValue="" onChange={handleSelectChange}>
                     <option value="">---------------</option>
-                    <option value='계약자'>계약자</option>
                     <option value='부서'>부서</option>
                 </select>
                 <form onSubmit={handleSubmit}>
@@ -71,14 +73,14 @@ export default function ContractLedger() {
                         <tbody>
                             {results.map((result, index) => (
                                 <tr key={index}>
-                                    <td>{result.ContractName}</td>
-                                    <td>{result.ContractDetail}</td>
-                                    <td>{result.ContractDeposit}</td>
-                                    <td>{result.ContractPartner}</td>
-                                    <td>{result.StartDay}</td>
-                                    <td>{result.EndDay}</td>
-                                    <td>{result.Department}</td>
-                                    <td>{result.PartnerAddress}</td>
+                                    <td>{result.contract_name}</td>
+                                    <td>{result.contract_detail}</td>
+                                    <td>{result.contract_deposit}</td>
+                                    <td>{result.contract_partner}</td>
+                                    <td>{result.start_day}</td>
+                                    <td>{result.end_day}</td>
+                                    <td>{result.department}</td>
+                                    <td>{result.partner_address}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -86,5 +88,5 @@ export default function ContractLedger() {
                 </div>
             )}
         </div>
-    )
+    );
 }

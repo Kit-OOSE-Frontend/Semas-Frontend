@@ -1,15 +1,17 @@
 import './InquiryAsset.css';
 import { useCallback, useState } from 'react';
 import axios from 'axios';
+import {BASE_URL} from "../config/Config"
 
 export default function InquiryAsset() {
+    
     const [assetId, setAssetId] = useState('');
     const [assetData, setAssetData] = useState([]);
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`/inquiry-asset?id=${assetId}`);
+            const response = await axios.get(`${BASE_URL}/inquiry-asset?id=${assetId}`);
             setAssetData(response.data);
         } catch (error) {
             console.error("데이터 조회 중 오류 발생:", error);
