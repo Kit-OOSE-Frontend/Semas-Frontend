@@ -12,14 +12,16 @@ import ContractLedger from "./contract/ContractLedger";
 import InputContract from "./contract/InputContract";
 import InquiryAsset from "./asset/InquiryAsset";
 import UpdateAssetStatement from "./asset/UpdateAssetStatement";
+import Main from "./page/Main/Main";
 
 function App() {
   return (
       <Routes>
-        <Route path="/add" element={<AddDetailsOfExecution/>} />
-        <Route path="/inquiry" element={<InquiryOperatingExpenses/>} />
-        <Route path="/retire" element={<RetirementPensionCalculation/>} />
-          <Route path="/" element={<InquirySeveranceAmount/>} />
+          <Route path="/" element={<Main />} />
+          <Route path="/add" element={<AddDetailsOfExecution/>} />
+          <Route path="/inquiry" element={<InquiryOperatingExpenses/>} />
+          <Route path="/retire" element={<RetirementPensionCalculation/>} />
+          <Route path="/inquiry-severance-amount" element={<InquirySeveranceAmount/>} />
           <Route path='/contract-ledger' element={<ContractLedger/>}/>
           <Route path='/input-contract' element={<InputContract/>}/>
           <Route path='/update-asset' element={<UpdateAssetStatement/>}/>
