@@ -3,6 +3,11 @@ import axios from "axios";
 import './ContractLedger.css';
 import { BASE_URL } from "../config/Config";
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toISOString().slice(0, 10);
+}
+
 export default function ContractLedger() {
     const [selectedType, setSelectedType] = useState("");
     const [inputValue, setInputValue] = useState("");
@@ -77,8 +82,8 @@ export default function ContractLedger() {
                                     <td>{result.contract_detail}</td>
                                     <td>{result.contract_deposit}</td>
                                     <td>{result.contract_partner}</td>
-                                    <td>{result.start_day}</td>
-                                    <td>{result.end_day}</td>
+                                    <td>{formatDate(result.start_day)}</td>
+                                    <td>{formatDate(result.end_day)}</td>
                                     <td>{result.department}</td>
                                     <td>{result.partner_address}</td>
                                 </tr>
