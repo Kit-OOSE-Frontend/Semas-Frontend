@@ -1,0 +1,39 @@
+.add-details-wrap {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: BMJUA, serif;
+}
+.add-details-title {
+    font-size: 2.5rem;
+    margin: 3rem 0;
+}
+.detail-div {
+    margin-bottom: 1rem;
+}
+.detail-div div {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+.detail-div input {
+    width: 10rem;
+    text-align: center;
+    font-family: BMJUA, serif;
+}
+.submit-btn {
+    cursor: pointer;
+    background-color: #027bff;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 200;
+    border-radius: 5px;
+    margin-top: 1rem;
+    width: 7rem;
+    height: 3rem;
+    font-family: BMJUA, serif;
+}
