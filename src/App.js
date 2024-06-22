@@ -17,16 +17,16 @@ function App() {
         <Route path="/inquiry" element={<InquiryOperatingExpenses/>} />
         <Route path="/retire" element={<RetirementPensionCalculation/>} />
         <Route path="/" element={<InquirySeveranceAmount/>} />
+      <Route path='/contract-ledger' element={<ContractLedger/>}/>
+      <Route path='/input-contract' element={<InputContract/>}/>
+      <Route path='/inquiry-asset' element={<InquiryAsset/>}/>
+      <Route path='/update-asset' element={<UpdateAssetStatement/>}/>
+          <Route path="/budget" element={<AddBudgetingDetail />} />
+          <Route path="/career" element={<AddCareerDetail />} />
+          <Route path="/inquirybudget" element={<InquiryBudgetingDetail />} />
+          <Route path="/inquirycareer" element={<InquiryCareerDetail />} />
       </Routes>
   );
-    return (
-        <Routes>
-            <Route path="/budget" element={<AddBudgetingDetail />} />
-            <Route path="/career" element={<AddCareerDetail />} />
-            <Route path="/inquirybudget" element={<InquiryBudgetingDetail />} />
-            <Route path="/inquirycareer" element={<InquiryCareerDetail />} />
-        </Routes>
-    );
 }
 
 export default App;
