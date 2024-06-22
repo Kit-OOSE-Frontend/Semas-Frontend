@@ -3,6 +3,11 @@ import {useCallback, useState} from "react";
 import axios from "axios";
 import {BASE_URL} from "../../config/Config";
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toISOString().slice(0, 10);
+}
+
 export default function InquiryOperatingExpenses() {
 
     const [operatingExpensesInputs, setOperatingExpensesInputs] = useState({
@@ -23,7 +28,6 @@ export default function InquiryOperatingExpenses() {
     )
 
     const handleInquiry = async ()=> {
-        const {department, date} = inquiryResult;
 
         const params = {
             department: department,
@@ -53,7 +57,7 @@ export default function InquiryOperatingExpenses() {
                     <input name='date' type='month' value={date} onChange={handleChange}/>
                 </div>
             </div>
-            <button onClick={()=> handleInquiry}>조회</button>
+            <button onClick={handleInquiry}>조회</button>
             {inquiryResult?.length > 0 ? (
                     <div className='inquiry-result'>
                         <table>
@@ -71,9 +75,9 @@ export default function InquiryOperatingExpenses() {
                             <tbody>
                             {inquiryResult.map(result => (
                             <tr>
-                                <td>{result.date}</td>
+                                <td>{formatDate(result.date)}</td>
                                 <td>{result.department}</td>
-                                <td>{result.cardNum}</td>
+                                <td>{result.card_num}</td>
                                 <td>{result.purpose}</td>
                                 <td>{result.place}</td>
                                 <td>{result.participant}</td>

@@ -7,7 +7,7 @@ export default function Main() {
             <div className='add-details-title'>메인 페이지</div>
             <div className='main-container'>
                 <Link to='/add'>
-                    <button>집행 세부내역 작성</button>
+                    <button>집행 세부내역 작성</button> {/*work*/}
                 </Link>
                 <Link to='/inquiry'>
                     <button>월별 부서운영비 카드사용내역 조회</button>
@@ -37,7 +37,7 @@ export default function Main() {
                     <button>예산 편성 신청 내역 조회</button>
                 </Link>
                 <Link to='/inquirycareer'>
-                    <button>상세경력 조회</button>
+                    <button>상세경력 조회</button> {/*work*/}
                 </Link>
             </div>
         </div>

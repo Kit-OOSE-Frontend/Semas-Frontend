@@ -12,7 +12,7 @@ export default function InquirySeveranceAmount() {
         setEmployeeId(e.target.value);
     })
 
-    const handleInquiry = async (e, employeeId) => {
+    const handleInquiry = async (e) => {
         e.preventDefault();
 
         try {
@@ -28,7 +28,7 @@ export default function InquirySeveranceAmount() {
     return (
         <div className='inquiry-severance-wrap'>
             <div className='inquiry-severance-title'>퇴직금액 조회</div>
-            <form className='inquiry-severance-form' onSubmit={ (e) => handleInquiry(e) }>
+            <form className='inquiry-severance-form' onSubmit={ handleInquiry }>
                 <div className='employee-id-input-title'>직원 ID</div>
                 <div className='inquiry-severance-input'>
                     <input className='employee-id-input' type='text' placeholder='조회할 직원의 ID를 입력하세요.' value={employeeId} onChange={handleChange}/>

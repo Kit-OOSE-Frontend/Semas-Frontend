@@ -23,11 +23,11 @@ export default function AddDetailsOfExecution() {
         }, [detailsOfExecution]
     )
 
-    const handleAdd = async (e, detailsOfExecution) => {
+    const handleAdd = async (e) => {
         e.preventDefault();
         const {cardNum, department, date, place, objective, participant, amount} = detailsOfExecution;
         const detail = {
-            cardNum: cardNum,
+            card_num: cardNum,
             department: department,
             date: date,
             place: place,

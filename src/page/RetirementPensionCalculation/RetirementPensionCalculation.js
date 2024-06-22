@@ -11,7 +11,7 @@ export default function RetirementPensionCalculation() {
         setEmployeeId(e.target.value);
     })
 
-    const handleCalculation = async (e, employeeId) => {
+    const handleCalculation = async (e) => {
         e.preventDefault();
 
         const id = {
@@ -31,7 +31,7 @@ export default function RetirementPensionCalculation() {
     return (
         <div className='retirement-pension-wrap'>
             <div className='retirement-pension-title'>퇴직연금 계산</div>
-            <form className='retirement-pension-form' onSubmit={ (e) => handleCalculation(e) }>
+            <form className='retirement-pension-form' onSubmit={ handleCalculation}>
                 <div className='employee-id-input-title'>직원 ID</div>
                 <div className='retirement-pension-input'>
                     <input className='employee-id-input' type='text' placeholder='계산할 직원의 ID를 입력하세요.' value={employeeId} onChange={handleChange}/>
