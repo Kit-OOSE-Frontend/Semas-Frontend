@@ -1,30 +1,30 @@
-import './AddCareerDetail.css';
-import { useCallback, useState } from 'react';
-import axios from 'axios';
-import { BASE_URL } from '../../config/Config';
+import "./AddCareerDetail.css";
+import { useCallback, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../../config/Config";
 
 export default function AddCareerDetail() {
     const [addCareerDetail, setAddCareerDetail] = useState({
         emp_id: 0,
-        emp_position: '',
-        emp_pos_detail: '',
-        emp_level: '',
-        emp_task: '',
-        emp_rate: '',
+        emp_position: "",
+        emp_pos_detail: "",
+        emp_level: "",
+        emp_task: "",
+        emp_rate: "",
         emp_pos_period: 0,
         emp_pos_exp: false,
         emp_training: false,
-        emp_license: '',
-        emp_prize: '',
-        emp_punish: '',
-        emp_pos_desire: '',
+        emp_license: "",
+        emp_prize: "",
+        emp_punish: "",
+        emp_pos_desire: "",
     });
 
     const handleChange = useCallback(
-        (e) => {
+        e => {
             const { name, value } = e.target;
-            if (name === 'emp_license') {
-                setAddCareerDetail({ ...addCareerDetail, [name]: value.split(',') });
+            if (name === "emp_license") {
+                setAddCareerDetail({ ...addCareerDetail, [name]: value.split(",") });
             } else {
                 setAddCareerDetail({ ...addCareerDetail, [name]: value });
             }
@@ -37,7 +37,7 @@ export default function AddCareerDetail() {
         console.log(addCareerDetail.emp_id);
     }; */
 
-    const handleAdd = async (e, addCareerDetail) => {
+    const handleAdd = async e => {
         e.preventDefault();
 
         const {
@@ -82,7 +82,7 @@ export default function AddCareerDetail() {
     return (
         <div className="add-details-wrap">
             <div className="add-details-title">사원 상세경력 작성</div>
-            <form onSubmit={(e) => handleAdd(e)}>
+            <form onSubmit={e => handleAdd(e)}>
                 <div className="detail-div">
                     <div>사원번호</div>
                     <input name="emp_id" type="number" value={addCareerDetail.emp_id} onChange={handleChange} />

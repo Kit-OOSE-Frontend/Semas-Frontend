@@ -1,16 +1,16 @@
-import React, { useState, useCallback } from 'react';
-import './AddBudgetingDetail.css';
-import axios from 'axios';
-import { BASE_URL } from '../../config/Config';
+import React, { useState, useCallback } from "react";
+import "./AddBudgetingDetail.css";
+import axios from "axios";
+import { BASE_URL } from "../../config/Config";
 
 export default function AddBudgetingDetail() {
     const [budgeting, setBudgeting] = useState({
-        budget_name: '',
-        budget_department: '',
-        agreement_name: '',
-        agreement_detail: '',
-        plan_name: '',
-        plan_detail: '',
+        budget_name: "",
+        budget_department: "",
+        agreement_name: "",
+        agreement_detail: "",
+        plan_name: "",
+        plan_detail: "",
         budget_detail_count: 3,
     });
 
@@ -18,15 +18,15 @@ export default function AddBudgetingDetail() {
 
     const [detailOfExecution, setDetailOfExecution] = useState([
         {
-            budget_detail_name: '',
+            budget_detail_name: "",
             budget_detail_quantity: 0,
             budget_detail_unit_price: 0,
-            budget_detail_unit: '',
+            budget_detail_unit: "",
         },
     ]);
 
     const handleChange = useCallback(
-        (e) => {
+        e => {
             const { name, value } = e.target;
             setBudgeting({ ...budgeting, [name]: value });
         },
@@ -47,22 +47,22 @@ export default function AddBudgetingDetail() {
         setDetailOfExecution([
             ...detailOfExecution,
             {
-                budget_detail_name: '',
+                budget_detail_name: "",
                 budget_detail_quantity: 0,
                 budget_detail_unit_price: 0,
-                budget_detail_unit: '',
+                budget_detail_unit: "",
             },
         ]);
     };
 
-    const deleteRow = (rowIndex) => {
+    const deleteRow = rowIndex => {
         setBudgeting({ ...budgeting, budget_detail_count: budgeting.budget_detail_count - 1 });
         const newData = [...detailOfExecution];
         newData.splice(rowIndex, 1);
         setDetailOfExecution(newData);
     };
 
-    const handleAdd = async (e, budgeting, detailOfExecution) => {
+    const handleAdd = async e => {
         e.preventDefault();
         const {
             budget_name,
@@ -99,9 +99,12 @@ export default function AddBudgetingDetail() {
             if (response1.status === 200) {
                 alert(`신청되었습니다. 당신의 예산 편성 신청 번호는 ${response1.data.id}입니다.`);
             }
-            const response2 = await axios.post(`${BASE_URL}/submit-budget-detail-list/${response1.data.id}`, detailform);
+            const response2 = await axios.post(
+                `${BASE_URL}/submit-budget-detail-list/${response1.data.id}`,
+                detailform
+            );
             if (response2.status === 200) {
-                alert('예산편성세목 신청 완료');
+                alert("예산편성세목 신청 완료");
             }
         } catch (error) {
             console.error(error);
@@ -111,7 +114,7 @@ export default function AddBudgetingDetail() {
     return (
         <div className="add-details-wrap">
             <div className="add-details-title">예산 편성 신청 내역 입력</div>
-            <form onSubmit={(e) => handleAdd(e)}>
+            <form onSubmit={e => handleAdd(e)}>
                 <div className="detail-div">
                     <div>예산 편성 신청 제목</div>
                     <input name="budget_name" type="text" value={budgeting.budget_name} onChange={handleChange} />
@@ -150,7 +153,7 @@ export default function AddBudgetingDetail() {
                     <table>
                         <thead>
                             <tr>
-                                {['품목', '수량', '단위가격', '단위', '총가격'].map((header, index) => (
+                                {["품목", "수량", "단위가격", "단위", "총가격"].map((header, index) => (
                                     <th key={index}>{header}</th>
                                 ))}
                             </tr>
@@ -162,8 +165,8 @@ export default function AddBudgetingDetail() {
                                         <input
                                             type="text"
                                             value={row.budget_detail_name}
-                                            onChange={(event) =>
-                                                handleChangeDetail(rowIndex, 'budget_detail_name', event)
+                                            onChange={event =>
+                                                handleChangeDetail(rowIndex, "budget_detail_name", event)
                                             }
                                         />
                                     </td>
@@ -171,8 +174,8 @@ export default function AddBudgetingDetail() {
                                         <input
                                             type="number"
                                             value={row.budget_detail_quantity}
-                                            onChange={(event) =>
-                                                handleChangeDetail(rowIndex, 'budget_detail_quantity', event)
+                                            onChange={event =>
+                                                handleChangeDetail(rowIndex, "budget_detail_quantity", event)
                                             }
                                         />
                                     </td>
@@ -180,8 +183,8 @@ export default function AddBudgetingDetail() {
                                         <input
                                             type="number"
                                             value={row.budget_detail_unit_price}
-                                            onChange={(event) =>
-                                                handleChangeDetail(rowIndex, 'budget_detail_unit_price', event)
+                                            onChange={event =>
+                                                handleChangeDetail(rowIndex, "budget_detail_unit_price", event)
                                             }
                                         />
                                     </td>
@@ -189,8 +192,8 @@ export default function AddBudgetingDetail() {
                                         <input
                                             type="text"
                                             value={row.budget_detail_unit}
-                                            onChange={(event) =>
-                                                handleChangeDetail(rowIndex, 'budget_detail_unit', event)
+                                            onChange={event =>
+                                                handleChangeDetail(rowIndex, "budget_detail_unit", event)
                                             }
                                         />
                                     </td>
