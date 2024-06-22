@@ -96,11 +96,10 @@ export default function AddBudgetingDetail() {
 
         try {
             const response1 = await axios.post(`${BASE_URL}/apply-budget-form`, budgetform);
-            const id = 0;
-            const response2 = await axios.post(`${BASE_URL}/submit-budget-detail-list/${id}`, detailform);
             if (response1.status === 200) {
-                alert('예산편성 신청 완료');
+                alert(`신청되었습니다. 당신의 예산 편성 신청 번호는 ${response1.data.id}입니다.`);
             }
+            const response2 = await axios.post(`${BASE_URL}/submit-budget-detail-list/${response1.data.id}`, detailform);
             if (response2.status === 200) {
                 alert('예산편성세목 신청 완료');
             }
