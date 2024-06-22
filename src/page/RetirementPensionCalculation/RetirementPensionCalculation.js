@@ -15,7 +15,7 @@ export default function RetirementPensionCalculation() {
         e.preventDefault();
 
         const id = {
-            id: employeeId
+            emp_id: employeeId
         }
 
         try {
