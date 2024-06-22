@@ -1,7 +1,7 @@
 import './InquiryCareerDetail.css';
 import { useCallback, useState } from 'react';
 import axios from 'axios';
-import { BASE_URL } from '../../config/Config';
+import {BASE_URL} from '../../config/Config';
 
 export default function InquiryCareerDetail() {
     const [empid, setEmpId] = useState('');
@@ -11,10 +11,10 @@ export default function InquiryCareerDetail() {
         setEmpId(e.target.value);
     });
 
-    const handleInquiry = async (e, empid) => {
-        e.preventDefault();
+    const handleInquiry = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/inquiry-emp-career/?id=${empid}`);
+            const response = await axios.get(`${BASE_URL}/inquiry-emp-career?id=${empid}`);
+            console.log(response);
             if (response.status === 200) {
                 setInquiryCareerDetail(response.data);
             }
@@ -32,8 +32,8 @@ export default function InquiryCareerDetail() {
                     <input name="emp_id" type="text" value={empid} onChange={handleChange} />
                 </div>
             </div>
-            <button onClick={() => handleInquiry}>조회</button>
-            {inquiryCareerDetail?.length > 0 ? (
+            <button onClick={handleInquiry}>조회</button>
+            {inquiryCareerDetail ? (
                 <div className="inquiry-career-result">
                     <table>
                         <thead>
@@ -54,23 +54,21 @@ export default function InquiryCareerDetail() {
                             </tr>
                         </thead>
                         <tbody>
-                            {inquiryCareerDetail.map((result) => (
                                 <tr>
-                                    <td>{result.emp_id}</td>
-                                    <td>{result.emp_position}</td>
-                                    <td>{result.emp_pos_detail}</td>
-                                    <td>{result.emp_level}</td>
-                                    <td>{result.emp_task}</td>
-                                    <td>{result.emp_rate}</td>
-                                    <td>{result.emp_pos_period}</td>
-                                    <td>{result.emp_pos_exp}</td>
-                                    <td>{result.emp_training}</td>
-                                    <td>{result.emp_license}</td>
-                                    <td>{result.emp_prize}</td>
-                                    <td>{result.emp_punish}</td>
-                                    <td>{result.emp_pos_desire}</td>
+                                    <td>{inquiryCareerDetail.emp_id}</td>
+                                    <td>{inquiryCareerDetail.emp_position}</td>
+                                    <td>{inquiryCareerDetail.emp_pos_detail}</td>
+                                    <td>{inquiryCareerDetail.emp_level}</td>
+                                    <td>{inquiryCareerDetail.emp_task}</td>
+                                    <td>{inquiryCareerDetail.emp_rate}</td>
+                                    <td>{inquiryCareerDetail.emp_pos_period}</td>
+                                    <td>{inquiryCareerDetail.emp_pos_exp}</td>
+                                    <td>{inquiryCareerDetail.emp_training}</td>
+                                    <td>{inquiryCareerDetail.emp_license}</td>
+                                    <td>{inquiryCareerDetail.emp_prize}</td>
+                                    <td>{inquiryCareerDetail.emp_punish}</td>
+                                    <td>{inquiryCareerDetail.emp_pos_desire}</td>
                                 </tr>
-                            ))}
                         </tbody>
                     </table>
                 </div>
