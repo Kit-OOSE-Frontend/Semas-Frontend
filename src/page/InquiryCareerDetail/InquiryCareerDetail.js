@@ -1,7 +1,7 @@
 import './InquiryCareerDetail.css';
 import { useCallback, useState } from 'react';
 import axios from 'axios';
-import { BASE_URL } from '../config/Config';
+import { BASE_URL } from '../../config/Config';
 
 export default function InquiryCareerDetail() {
     const [empid, setEmpId] = useState('');

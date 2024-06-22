@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import './InquiryBudgetingDetail.css';
 import axios from 'axios';
-import { BASE_URL } from '../config/Config';
+import { BASE_URL } from '../../config/Config';
 
 export default function InquiryBudgetingDetail() {
     const [inquiryCareerDetail, setInquiryCareerDetail] = useState();

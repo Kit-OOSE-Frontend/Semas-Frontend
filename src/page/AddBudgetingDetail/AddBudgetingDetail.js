@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import './AddBudgetingDetail.css';
 import axios from 'axios';
-import { BASE_URL } from '../config/Config';
+import { BASE_URL } from '../../config/Config';
 
 export default function AddBudgetingDetail() {
     const [budgeting, setBudgeting] = useState({
