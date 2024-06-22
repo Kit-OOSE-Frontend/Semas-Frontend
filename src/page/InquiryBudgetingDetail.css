@@ -1,0 +1,74 @@
+.inquiry-budget-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70rem;
+    margin: 0 auto;
+    font-family: BMJUA, serif;
+    text-align: center;
+}
+.inquiry-budget-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 3rem;
+}
+.inquiry-budget-input {
+    display: flex;
+    align-items: center;
+}
+.inquiry-budget-input-wrap {
+    display: flex;
+    margin-top: 6rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.inquiry-budget-input label {
+    margin-right: 2rem;
+    font-size: 2rem;
+}
+.inquiry-budget-input input {
+    width: 15rem;
+    height: 2rem;
+    font-size: 1.6rem;
+    font-family: BMJUA, serif;
+    text-align: center;
+}
+.inquiry-budget-input input {
+    height: 2rem;
+    font-size: 1.6rem;
+    font-family: BMJUA, serif;
+    text-align: center;
+}
+.inquiry-budget-wrap button {
+    cursor: pointer;
+    background-color: #027bff;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 200;
+    border-radius: 5px;
+    margin: 2rem auto;
+    width: 7rem;
+    height: 3rem;
+    font-family: BMJUA, serif;
+}
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+th,
+td {
+    border: 2px solid #000;
+    font-size: 1.4rem;
+    text-align: center;
+    vertical-align: middle;
+    height: 3rem;
+}
+th {
+    background-color: #8fbc8f;
+}
+.budget-no-result {
+    font-size: 2.5rem;
+    margin-top: 6rem;
+}
