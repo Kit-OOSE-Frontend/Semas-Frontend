@@ -1,9 +1,9 @@
 import './App.css';
-import AddDetailsOfExecution from "./page/AddDetailsOfExecution";
+import AddDetailsOfExecution from "./page/AddDetailsOfExecution/AddDetailsOfExecution";
 import {Route, Routes} from "react-router-dom";
-import InquiryOperatingExpenses from "./page/InquiryOperatingExpenses";
-import RetirementPensionCalculation from "./page/RetirementPensionCalculation";
-import InquirySeveranceAmount from "./page/InquirySeveranceAmount";
+import InquiryOperatingExpenses from "./page/InquiryOperatingExpenses/InquiryOperatingExpenses";
+import RetirementPensionCalculation from "./page/RetirementPensionCalculation/RetirementPensionCalculation";
+import InquirySeveranceAmount from "./page/InquirySeveranceAmount/InquirySeveranceAmount";
 
 function App() {
   return (
