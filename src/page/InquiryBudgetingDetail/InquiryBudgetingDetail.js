@@ -4,9 +4,10 @@ import axios from "axios";
 import { BASE_URL } from "../../config/Config";
 
 export default function InquiryBudgetingDetail() {
-    const [inquiryCareerDetail, setInquiryCareerDetail] = useState();
-    const [detailOfExecution, setDetailOfExecution] = useState();
+    const [inquiryBudgetDetail, setInquiryBudgetDetail] = useState(null);
+    const [detailOfExecution, setDetailOfExecution] = useState([]);
     const [budgetid, setBudgetid] = useState("");
+    const [status, setStatus] = useState("");
 
     const handleChange = useCallback(
         e => {
@@ -19,14 +20,25 @@ export default function InquiryBudgetingDetail() {
         try {
             const response1 = await axios.get(`${BASE_URL}/inquiry-budget-form?id=${budgetid}`);
             if (response1.status === 200) {
-                setInquiryCareerDetail(response1.data);
+                setInquiryBudgetDetail(response1.data);
+                setStatus("성공");
+                //console.log(response1.data);
+                const response2 = await axios.get(`${BASE_URL}/inquiry-budget-detail-list?id=${budgetid}`);
+                if (response2.status === 200) {
+                    setDetailOfExecution(response2.data);
+                    //console.log(response2.data);
+                } else {
+                    setStatus("실패");
+                }
+            } else {
+                setStatus("실패");
             }
-            const response2 = await axios.get(`${BASE_URL}/inquiry-budget-detail-list?id=${budgetid}`);
-            if (response2.status === 200) {
-                setDetailOfExecution(response2.data);
-            }
+            console.log(inquiryBudgetDetail);
+            console.log(detailOfExecution);
+            console.log(status);
         } catch (error) {
             console.error(error);
+            setStatus("실패");
         }
     };
 
@@ -39,8 +51,9 @@ export default function InquiryBudgetingDetail() {
                     <input name="budgetid" type="text" value={budgetid} onChange={handleChange} />
                 </div>
             </div>
-            <button onClick={() => handleInquiry}>조회</button>
-            {inquiryCareerDetail?.length > 0 ? (
+            <button onClick={handleInquiry}>조회</button>
+
+            {status === "성공" && inquiryBudgetDetail ? (
                 <div className="inquiry-budget-result">
                     <table>
                         <thead>
@@ -55,21 +68,23 @@ export default function InquiryBudgetingDetail() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{inquiryCareerDetail.budget_name}</td>
-                                <td>{inquiryCareerDetail.budget_department}</td>
-                                <td>{inquiryCareerDetail.agreement_name}</td>
-                                <td>{inquiryCareerDetail.agreement_detail}</td>
-                                <td>{inquiryCareerDetail.plan_name}</td>
-                                <td>{inquiryCareerDetail.plan_detail}</td>
+                                <td>{inquiryBudgetDetail.budget_name}</td>
+                                <td>{inquiryBudgetDetail.budget_department}</td>
+                                <td>{inquiryBudgetDetail.agreement_name}</td>
+                                <td>{inquiryBudgetDetail.agreement_detail}</td>
+                                <td>{inquiryBudgetDetail.plan_name}</td>
+                                <td>{inquiryBudgetDetail.plan_detail}</td>
                             </tr>
-                            <th scope="row" rowSpan={inquiryCareerDetail.map(result => result.budget_detail_count)}>
-                                세목
-                            </th>
-                            <th scope="col">품목</th>
-                            <th scope="col">수량</th>
-                            <th scope="col">단위가격</th>
-                            <th scope="col">단위</th>
-                            <th scope="col">총가격</th>
+                            <tr>
+                                <th scope="row" rowSpan={inquiryBudgetDetail.budget_detail_count}>
+                                    세목
+                                </th>
+                                <th scope="col">품목</th>
+                                <th scope="col">수량</th>
+                                <th scope="col">단위가격</th>
+                                <th scope="col">단위</th>
+                                <th scope="col">총가격</th>
+                            </tr>
                             {detailOfExecution.map((row, rowIndex) => (
                                 <tr key={rowIndex}>
                                     <td>{row.budget_detail_name}</td>
@@ -83,7 +98,7 @@ export default function InquiryBudgetingDetail() {
                     </table>
                 </div>
             ) : (
-                <div className="budget-no-result">조회 결과가 없습니다.</div>
+                <div className="budget-no-result">{status === "실패" ? "조회 결과가 없습니다." : ""}</div>
             )}
         </div>
     );
