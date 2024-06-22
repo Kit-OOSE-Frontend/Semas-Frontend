@@ -1,28 +1,27 @@
-import React, { useState, useCallback } from 'react';
-import './InquiryBudgetingDetail.css';
-import axios from 'axios';
-import { BASE_URL } from '../../config/Config';
+import React, { useState, useCallback } from "react";
+import "./InquiryBudgetingDetail.css";
+import axios from "axios";
+import { BASE_URL } from "../../config/Config";
 
 export default function InquiryBudgetingDetail() {
     const [inquiryCareerDetail, setInquiryCareerDetail] = useState();
     const [detailOfExecution, setDetailOfExecution] = useState();
-    const [budgetid, setBudgetid] = useState('');
+    const [budgetid, setBudgetid] = useState("");
 
     const handleChange = useCallback(
-        (e) => {
+        e => {
             setBudgetid(e.target.value);
         },
         [budgetid]
     );
 
-    const handleInquiry = async (e, budgetid) => {
-        e.preventDefault();
+    const handleInquiry = async () => {
         try {
-            const response1 = await axios.get(`${BASE_URL}/inquiry-budget-form/?id=${budgetid}`);
+            const response1 = await axios.get(`${BASE_URL}/inquiry-budget-form?id=${budgetid}`);
             if (response1.status === 200) {
                 setInquiryCareerDetail(response1.data);
             }
-            const response2 = await axios.get(`${BASE_URL}/inquiry-budget-detail-list/?id=${budgetid}`);
+            const response2 = await axios.get(`${BASE_URL}/inquiry-budget-detail-list?id=${budgetid}`);
             if (response2.status === 200) {
                 setDetailOfExecution(response2.data);
             }
@@ -55,17 +54,15 @@ export default function InquiryBudgetingDetail() {
                             </tr>
                         </thead>
                         <tbody>
-                            {inquiryCareerDetail.map((result) => (
-                                <tr>
-                                    <td>{result.budget_name}</td>
-                                    <td>{result.budget_department}</td>
-                                    <td>{result.agreement_name}</td>
-                                    <td>{result.agreement_detail}</td>
-                                    <td>{result.plan_name}</td>
-                                    <td>{result.plan_detail}</td>
-                                </tr>
-                            ))}
-                            <th scope="row" rowSpan={inquiryCareerDetail.map((result) => result.budget_detail_count)}>
+                            <tr>
+                                <td>{inquiryCareerDetail.budget_name}</td>
+                                <td>{inquiryCareerDetail.budget_department}</td>
+                                <td>{inquiryCareerDetail.agreement_name}</td>
+                                <td>{inquiryCareerDetail.agreement_detail}</td>
+                                <td>{inquiryCareerDetail.plan_name}</td>
+                                <td>{inquiryCareerDetail.plan_detail}</td>
+                            </tr>
+                            <th scope="row" rowSpan={inquiryCareerDetail.map(result => result.budget_detail_count)}>
                                 세목
                             </th>
                             <th scope="col">품목</th>
